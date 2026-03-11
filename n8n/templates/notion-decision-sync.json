@@ -1,0 +1,17 @@
+{
+  "name": "Decision Broadcast",
+  "description": "Push memory/key-decisions.md entries into Notion Decision Log",
+  "env": {
+    "NOTION_TOKEN": "${NOTION_WORK_TOKEN}",
+    "DECISION_DB_ID": "${NOTION_DECISION_DB_ID}",
+    "DECISIONS_MD_PATH": "${REPO}/memory/key-decisions.md"
+  },
+  "placeholders": {
+    "markdownPattern": "^- (?<date>\\d{4}-\\d{2}-\\d{2}): (?<summary>.*)$"
+  },
+  "nodes": [
+    { "type": "GitHub", "operation": "get file" },
+    { "type": "Function", "operation": "extract entries" },
+    { "type": "Notion", "operation": "upsert" }
+  ]
+}

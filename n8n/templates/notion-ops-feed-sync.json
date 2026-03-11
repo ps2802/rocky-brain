@@ -1,0 +1,18 @@
+{
+  "name": "Ops Feed Sync",
+  "description": "Append logs/daily-log.md sections into Notion Ops Feed",
+  "env": {
+    "NOTION_TOKEN": "${NOTION_WORK_TOKEN}",
+    "OPS_DB_ID": "${NOTION_OPS_DB_ID}",
+    "DAILY_LOG_PATH": "${REPO}/logs/daily-log.md"
+  },
+  "placeholders": {
+    "headingPrefix": "## ",
+    "listPrefix": "- "
+  },
+  "nodes": [
+    { "type": "GitHub", "operation": "get file" },
+    { "type": "Function", "operation": "split by date" },
+    { "type": "Notion", "operation": "create" }
+  ]
+}

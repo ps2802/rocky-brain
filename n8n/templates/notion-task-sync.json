@@ -1,0 +1,20 @@
+{
+  "name": "Notion Task Sync",
+  "description": "Sync Task Board <-> TASKS.md",
+  "env": {
+    "NOTION_TOKEN": "${NOTION_WORK_TOKEN}",
+    "TASK_DB_ID": "${NOTION_TASK_DB_ID}",
+    "TASKS_MD_PATH": "${REPO}/TASKS.md"
+  },
+  "placeholders": {
+    "statusMapping": ["Backlog", "Ready", "In Progress", "Blocked", "Done"],
+    "markdownSectionOrder": ["Backlog", "Ready", "In Progress", "Blocked", "Done"]
+  },
+  "nodes": [
+    { "type": "Notion", "operation": "list" },
+    { "type": "Function", "operation": "map to markdown" },
+    { "type": "GitHub", "operation": "update file" },
+    { "type": "Function", "operation": "parse markdown -> Notion payload" },
+    { "type": "Notion", "operation": "upsert" }
+  ]
+}
