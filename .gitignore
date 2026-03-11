@@ -1,2 +1,4 @@
 SECRETS.md
 secrets/
+.env
+*.credentials.json
