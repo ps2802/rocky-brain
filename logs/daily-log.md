@@ -4,3 +4,4 @@
 - Rebuilt Rocky workspace after reset; created brain/memory/projects/operations/logs directories.
 - Drafted core brain docs and initial project placeholders.
 - Set plan to version control via GitHub `rocky-brain` repo.
+- Installed Google Cloud SDK and completed ADC login for praneet@moongate.one (Gmail/Drive/Calendar scopes).
