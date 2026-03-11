@@ -28,7 +28,12 @@ These scopes cover the live requirements: reading Gmail, accessing/updating exis
 | `scripts/gmail-unread.js` | List up to 10 unread inbox messages |
 | `scripts/google-drive-recent.js` | List 10 most recently modified Drive files |
 
-All helper scripts add `X-Goog-User-Project: moongate-422713` to every API request. Without that header, Google falls back to the default SDK project and throws 403 quota errors.
+## Operational Notes
+- **Quota header:** Every script sends `X-Goog-User-Project: moongate-422713`. Without it, Google bills the default SDK project (764….) and returns 403s.
+- **Credential storage:** ADC JSON lives at `~/.config/gcloud/application_default_credentials.json` (chmod 600). Reference links live in `SECRETS.md`; no values are stored in markdown.
+- **Account routing:** All OAuth tokens are for `praneet@moongate.one`. If personal-account access is needed, run the same `gcloud auth application-default login` flow with the personal profile and store the JSON at `~/.config/gcloud/adc-personal-praneet.json`.
+- **Scope rationale:** `gmail.readonly` covers inbox monitoring, `drive` is required for opening/editing existing files and creating Docs/Sheets, and `calendar` powers scheduling. No `gmail.send` scope is requested until we have an actual sending requirement.
+- **Upgrade path:** When Workspace super-admin access is available, follow the service-account section below to remove the OAuth user dependency entirely.
 
 ## Usage
 ```bash
