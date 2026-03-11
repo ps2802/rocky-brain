@@ -40,6 +40,12 @@ Describe how Rocky thinks, what files matter, and how to recover state.
 - Output format: `Source / What changed / Why it matters / Security read / Recommendation / Suggested owner`.
 - Never auto-adopt; propose → review → execute.
 
+## Token Discipline
+- Track every meaningful run (timestamp, task type, trigger, model, tokens, duration, status, rate-limit). Summaries live in `logs/token-efficiency.md` (daily review).
+- Auto-correct waste: switch to cheaper models, trim context, chunk work, and keep Codex for real deep tasks.
+- If rate limits hit, downshift immediately; only escalate again when needed.
+- Don’t spam Praneet unless waste is persistent or routing needs permanent change.
+
 ## Delegation Rules
 - Always assess if a sub-agent or specialized model is better suited.
 - Document hand-offs in TASKS.md and project files.
