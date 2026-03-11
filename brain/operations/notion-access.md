@@ -1,51 +1,72 @@
 # Notion Bridge – Rocky Command Centre
 
-> **Status:** Access pending. This doc captures the structure and workflow so we can reconnect immediately once Notion credentials are reissued.
+## Access Checklist (what Praneet must provide)
+### Work workspace — “Rocky Command Centre (Work)”
+1. Create/confirm Notion internal integration named **`rocky-work-bridge`**.
+2. Share the entire workspace (or at minimum the databases below) with that integration.
+3. Send the integration secret (I’ll store it at `secrets/notion/work.token`).
+4. Share + send database IDs for:
+   - `Task Board`
+   - `Decision Log`
+   - `Ops Feed`
 
-## 1. Rocky Command Centre Structure
-- Central workspace: **Rocky Command Centre** (Notion)
-- Expected top-level areas:
-  - **Dashboards:** high-level status (work vs personal streams)
-  - **Pipelines / Databases:** task boards, roadmaps, CRM snippets
-  - **Reference pages:** project briefs, SOPs, meeting notes
-- Once access returns, capture the exact page tree here (e.g., Dashboard → Workstreams → Moongate)
+### Personal workspace — “Rocky Command Centre (Personal)”
+1. Create integration **`rocky-personal-bridge`**.
+2. Share the workspace (or relevant DBs) with that integration.
+3. Provide the integration secret (stored at `secrets/notion/personal.token`).
+4. Share + send DB IDs for:
+   - `Personal Tasks` (future sync target)
+   - Any other DBs you want mirrored later.
 
-## 2. Important Pages / Databases
-Placeholder until access is re-granted. Expected key objects:
-- **Task board:** Kanban or table driving execution
-- **Meeting notes DB:** logs decisions + action items
-- **Projects DB:** Moongate, MoonSuite, Moongent, Gridlock
-- **References:** vendor lists, credentials, etc.
+## Work Workspace Structure
+- **Pages:** `Dashboard`, `Moongate Ops`, `Automations`, `Knowledge Base`.
+- **Databases:**
+  | Database | Purpose | Key Fields |
+  |----------|---------|------------|
+  | Task Board | Source of truth for execution | `Name`, `Status`, `Owner`, `Priority`, `Due`, `SourceID`, `Notes`
+  | Decision Log | Canonical decision history | `Name`, `Date`, `Context`, `Owner`, `SourceLink`
+  | Ops Feed | Daily summary snapshots | `Date`, `Highlights`, `SourceLink`
 
-Action when access is restored:
-1. List each critical page/DB here with its Notion URL
-2. Note the purpose + fields for each database
+## Personal Workspace Structure
+- **Pages:** `Personal HQ`, `Finance`, `Experiments`, `Calendar overlay`.
+- **Databases:**
+  | Database | Purpose | Key Fields |
+  |----------|---------|------------|
+  | Personal Tasks | Light-weight personal todos | `Name`, `Status`, `Due`, `Notes`
+  | (future) Personal Notes | Reference items | `Name`, `Tags`, `Summary`
 
-## 3. Task Workflow
-- Source of truth for live work: Notion task board (Rocky Command Centre)
-- Local mirror: `TASKS.md` in GitHub for resilience + diffing
-- Flow once synced:
-  1. Capture work in Notion (Backlog → Ready → In Progress → Done)
-  2. `n8n` (or manual script) syncs key fields (ID, title, owner, status, due) into `TASKS.md`
-  3. Completed items logged daily in `logs/daily-log.md`
+## Task Workflow
+1. Capture every live task in **Task Board** (Work). Columns: Backlog → Ready → In Progress → Blocked → Done.
+2. `TASKS.md` mirrors the active items (Backlog/Ready/In Progress/Blocked/Done sections), using the Notion ID as `{id: }` metadata so round-trips are lossless.
+3. Completed tasks get logged in `logs/daily-log.md` (summary) and stay archived in Notion.
 
-## 4. What lives only in Notion
-- High-churn collaborative tasks and dashboards
-- Meeting notes with inline comments
-- CRM-style tables that depend on Notion filters/rollups
-- Visual boards for quick triage
+## Sync Mappings
+1. **Task Board ⇄ `TASKS.md`**
+   - `Name` ↔ Markdown entry title
+   - `Status` ↔ Markdown section
+   - `Owner` ↔ `{owner: }`
+   - `Due` ↔ `{due: }`
+   - `Priority` ↔ `{priority: }`
+   - Notion page ID ↔ `{id: }` for reconciliation
+2. **`memory/key-decisions.md` → Decision Log**
+   - `- YYYY-MM-DD: Summary` ↔ `Name`
+   - Date portion ↔ `Date`
+   - Remaining text ↔ `Context`
+   - Git permalink ↔ `SourceLink`
+3. **`logs/daily-log.md` → Ops Feed**
+   - Section heading ↔ `Date`
+   - Bullets under that date ↔ `Highlights`
+   - File anchor ↔ `SourceLink`
 
-## 5. What mirrors into GitHub (`rocky-brain`)
-- Canonical memories (`memory/*.md`, `logs/*.md`)
-- Task snapshots (`TASKS.md`)
-- Project briefs (`projects/*.md`)
-- Operating docs (this folder)
+## Sync Execution
+- Owner: **n8n** (three workflows: `Notion Task Sync`, `Decision Broadcast`, `Ops Feed Sync`).
+- Each workflow accepts the Notion token + DB IDs via environment variables; GitHub files are accessed from this repo.
 
-## 6. Reconnecting After a Reset
-1. Request Notion invite to **Rocky Command Centre** (praneet@moongate.one + bot account)
-2. Verify API token / integration (store reference in `SECRETS.md`, actual token in `secrets/`)
-3. Sync key databases via `n8n` or scripts
-4. Update this file with the actual page map + URLs
-5. Resume normal workflow (Notion for live ops, GitHub for recovery)
+## Reset / Reconnect Steps
+1. Ensure both integration tokens exist locally (`secrets/notion/work.token`, `secrets/notion/personal.token`).
+2. Export DB IDs into `secrets/notion/work-db-ids.json` for n8n to consume.
+3. Run the n8n workflows (or redeploy them) so they start syncing again.
+4. Verify Task Board ↔ `TASKS.md` sync by updating one task and running the job.
+5. Verify Decision Log + Ops Feed by appending to the markdown files and confirming the new Notion rows.
 
-_Once access resumes, replace the placeholders with real links and screenshots so resets can be recovered end-to-end._
+Once the tokens and DB IDs are provided, these instructions make the Notion bridge fully executable—no more placeholder mode.
