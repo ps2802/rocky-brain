@@ -5,3 +5,4 @@
 - Drafted core brain docs and initial project placeholders.
 - Set plan to version control via GitHub `rocky-brain` repo.
 - Installed Google Cloud SDK and completed ADC login for praneet@moongate.one (Gmail/Drive/Calendar scopes).
+- Captured separate personal Google ADC (praneet.sinha28@gmail.com) and stored both credential files for swapping.
