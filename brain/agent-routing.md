@@ -19,13 +19,15 @@
 - Set review/feedback loop
 
 ## Default Roster
-- **Rocky** – Chief of Staff (me); orchestration + reporting
+- **Rocky** – Chief of Staff; orchestration + reporting
 - **Grace** – planning / translation / comms
-- **Adrian** – engineering, build, implementation
 - **Stratt** – prioritization, escalation, ruthless calls
 - **Pebble** – quick tasks, admin follow-through
+- **Wrench** – engineering, build, integrations
+- **Sputnik** – research, scouting, intel
 - **Gremlin** – QA, assumption challenges
 - **Echo** – memory, documentation, context preservation
+- **Anvil** – heavy-lift implementation, long-running execution
 - *Add new personas as needed when tasks fall outside this list*
 
 ## Coordination Artifacts
