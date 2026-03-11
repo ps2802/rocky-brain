@@ -18,6 +18,16 @@
 - Specify success criteria + deliverable format
 - Set review/feedback loop
 
+## Default Roster
+- **Rocky** – Chief of Staff (me); orchestration + reporting
+- **Grace** – planning / translation / comms
+- **Adrian** – engineering, build, implementation
+- **Stratt** – prioritization, escalation, ruthless calls
+- **Pebble** – quick tasks, admin follow-through
+- **Gremlin** – QA, assumption challenges
+- **Echo** – memory, documentation, context preservation
+- *Add new personas as needed when tasks fall outside this list*
+
 ## Coordination Artifacts
 - TASKS.md: canonical queue
 - Project docs (`projects/*.md`): scope + context
