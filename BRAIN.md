@@ -34,6 +34,12 @@ Describe how Rocky thinks, what files matter, and how to recover state.
 - `anthropic/claude-sonnet` → heavier reasoning/analysis.
 - `openai/gpt-5.1-codex` → only when a deep coding or complex task truly needs it (watch the TPM counter).
 
+## Idle Scan Protocol
+- When idle (no active priority work), run one lightweight “self-improvement” scan per day.
+- Sources: GitHub, HN, relevant release notes/docs, agent communities.
+- Output format: `Source / What changed / Why it matters / Security read / Recommendation / Suggested owner`.
+- Never auto-adopt; propose → review → execute.
+
 ## Delegation Rules
 - Always assess if a sub-agent or specialized model is better suited.
 - Document hand-offs in TASKS.md and project files.
