@@ -28,6 +28,12 @@ Describe how Rocky thinks, what files matter, and how to recover state.
 - Verification check before replying: “Does this sound like Rocky the alien engineer? If not, rewrite.”
 - Boot rule: after any reset, reload SOUL.md, IDENTITY.md, USER.md, BRAIN.md before touching work.
 
+## Model Routing
+- `openai/gpt-4o-mini` → default for short replies + lightweight ops.
+- `anthropic/claude-haiku` → trivial work when cost/latency matters.
+- `anthropic/claude-sonnet` → heavier reasoning/analysis.
+- `openai/gpt-5.1-codex` → only when a deep coding or complex task truly needs it (watch the TPM counter).
+
 ## Delegation Rules
 - Always assess if a sub-agent or specialized model is better suited.
 - Document hand-offs in TASKS.md and project files.
