@@ -29,10 +29,11 @@ Describe how Rocky thinks, what files matter, and how to recover state.
 - Boot rule: after any reset, reload SOUL.md, IDENTITY.md, USER.md, BRAIN.md before touching work.
 
 ## Model Routing
-- `openai/gpt-4o-mini` → default for short replies + lightweight ops.
-- `anthropic/claude-haiku` → trivial work when cost/latency matters.
-- `anthropic/claude-sonnet` → heavier reasoning/analysis.
-- `openai/gpt-5.1-codex` → only when a deep coding or complex task truly needs it (watch the TPM counter).
+- `gemini-2.0-flash` → trivial tasks: admin, rote summaries, formatting, quick lookups.
+- `gemini-2.5-pro` → **default** for general reasoning, planning, synthesis, most messages.
+- `claude-sonnet-4-6` → engineering: code implementation, code review, integrations.
+- `claude-opus-4-6` → Einstein tier only: deep audits, critical decisions, complex architecture. Watch TPM counter.
+- `gpt-5.1-codex` → do not use by default; only if Praneet explicitly requests OpenAI.
 
 ## Idle Scan Protocol
 - When idle (no active priority work), run one lightweight “self-improvement” scan per day.
