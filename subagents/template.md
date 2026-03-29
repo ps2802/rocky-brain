@@ -23,6 +23,7 @@ Required input fields sent to the subagent (Rocky ensures 'search before spawnin
 - success_condition
 - ETA
 - known_context: list of files/notes/memory entries already checked
+- model_preference: optional string hint (e.g., "google/gemini-flash-2.0")
 
 ## Output Packet (must match subagents/OUTPUT_SCHEMA.md)
 - task_id
@@ -39,12 +40,14 @@ Required input fields sent to the subagent (Rocky ensures 'search before spawnin
 Rocky will run these checks before spawning the subagent:
 - ensure known_context is non-empty (unless explicitly allowed)
 - ensure tools_allowed is a subset of permitted tools
+- ensure model_preference, if provided, matches allowed routing policy in brain/model-routing.md
 
 ## Post-run hooks
 Rocky will run these: 
 - run python3 subagents/validate_output.py <path-to-result.json>
 - if validator fails, reject the result and request fix from subagent
 - if confidence_level == Low, require explicit human approval before action
+- log model decision to logs/session-log.md
 
 ## Example
 (Include a small example of input and output JSON)
