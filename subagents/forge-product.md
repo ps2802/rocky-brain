@@ -26,6 +26,10 @@ Turn fuzzy goals into sharp specs, workflows, and decisions.
 - specs that alter roadmap priorities materially
 - architectural decisions with long lock-in
 
+## Model
+
+model_preference: anthropic/claude-haiku-4-5
+
 ## Output Contract
 
 Use `subagents/OUTPUT_SCHEMA.md`.

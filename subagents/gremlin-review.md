@@ -27,6 +27,10 @@ Find what is wrong before reality does.
 - missing evidence in high-stakes work
 - anything that looks done but smells fake
 
+## Model
+
+model_preference: anthropic/claude-haiku-4-5
+
 ## Output Contract
 
 Use `subagents/OUTPUT_SCHEMA.md`.

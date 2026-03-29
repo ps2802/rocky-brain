@@ -28,6 +28,10 @@ Find compounding loops, channels, and experiments worth running.
 - material spend decisions
 - public publishing
 
+## Model
+
+model_preference: google/gemini-flash-2.0
+
 ## Output Contract
 
 Use `subagents/OUTPUT_SCHEMA.md`.

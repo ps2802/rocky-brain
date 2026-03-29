@@ -27,6 +27,10 @@ Keep the brain clean, current, and recoverable.
 - promotion candidates that change durable identity or trust assumptions
 - ambiguous work/personal memory placement
 
+## Model
+
+model_preference: openai/gpt-5-mini
+
 ## Output Contract
 
 Use `subagents/OUTPUT_SCHEMA.md`.

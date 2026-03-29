@@ -24,6 +24,10 @@ One sentence. No philosophy. No poetry.
 
 - define the boundary
 
+## Model
+
+model_preference: [set per ROUTING.md defaults — e.g. google/gemini-flash-2.0 for research, openai/gpt-5-mini for ops/rote]
+
 ## Output Contract
 
 Use `subagents/OUTPUT_SCHEMA.md`.

@@ -27,6 +27,10 @@ Handle founder experiments, weird bets, and personal project momentum without co
 - financial commitments
 - public launches
 
+## Model
+
+model_preference: openai/gpt-5-mini
+
 ## Output Contract
 
 Use `subagents/OUTPUT_SCHEMA.md`.

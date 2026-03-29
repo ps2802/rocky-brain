@@ -26,6 +26,10 @@ Decide what matters, what can wait, and what should die.
 - irreversible strategic changes
 - decisions with major capital or reputational impact
 
+## Model
+
+model_preference: google/gemini-flash-2.0
+
 ## Output Contract
 
 Use `subagents/OUTPUT_SCHEMA.md`.

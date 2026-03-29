@@ -27,6 +27,10 @@ Map relationship opportunities without turning into a CRM with a personality dis
 - pricing or commercial commitments
 - relationship-sensitive follow-ups
 
+## Model
+
+model_preference: google/gemini-flash-2.0
+
 ## Output Contract
 
 Use `subagents/OUTPUT_SCHEMA.md`.

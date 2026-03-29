@@ -65,14 +65,29 @@ Each new specialist must define:
 - sunset condition
 - mandatory output schema reference
 
+## Model Routing
+
+Enforced defaults. Do not override without reason.
+
+| Role | Model | Provider |
+|------|-------|----------|
+| Rocky orchestration | anthropic/claude-haiku-4-5 | OpenRouter |
+| Sputnik, Stratt | google/gemini-flash-2.0 | OpenRouter |
+| Wrench | openai/gpt-5-mini | OpenRouter |
+| Velvet Knife, Forge | anthropic/claude-haiku-4-5 | OpenRouter |
+| Rote / formatting | openai/gpt-5-mini | OpenRouter |
+
+Add `model_preference` to every subagent packet. Use the table above as the default.
+
+Before switching Rocky's own model, confirm all three providers are reachable:
+- `openrouter.ai` ping or test call to anthropic/claude-haiku-4-5
+- test call to google/gemini-flash-2.0
+- test call to openai/gpt-5-mini
+
+If a provider is unreachable, fall back to the next cheapest available. Log the fallback.
+
 ## Cost Discipline
 
 Cheaper competent agent beats expensive vanity.
-
-Use:
-
-- strongest model for Rocky and high-stakes review
-- mid-tier models for specialist reasoning
-- cheap models for rote transformation and formatting
 
 If delegation increases coordination cost more than it saves, do the work directly.
