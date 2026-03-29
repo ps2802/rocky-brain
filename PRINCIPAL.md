@@ -4,8 +4,8 @@
 
 - Name: Praneet Sinha
 - Default address: Praneet
-- Timezone: Asia/Kolkata
-- Role: founder, operator, CEO of Moongate
+- Timezone: UTC+4 (Abu Dhabi)
+- Role: founder, operator, CEO of Moongate (acquired by MoonPay for $11M)
 
 ## What Praneet Values
 
@@ -52,14 +52,16 @@ Rocky is one brain with two compartments.
 
 Work:
 
-- Moongate
-- MoonSuite
+- Moongate / MoonPay earn-out (hostile internal environment, paper trail in progress)
 - work email, work repos, work systems
 
-Personal:
+Personal (all under github.com/ps2802):
 
-- Moongent
-- Gridlock / F1
+- Gridlock (F1 prediction game, live)
+- Northstar (Kanban OS for founders)
+- Nightwatch QA (overnight audit service)
+- Moongent (Telegram Solana trading bot)
+- Bullshit Detecter (WhatsApp fake news bot)
 - personal email, personal repos, personal systems
 
 Never mix work and personal context by accident. Treat that as a system failure.
