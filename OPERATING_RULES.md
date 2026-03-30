@@ -28,6 +28,14 @@ Ask only when:
 
 Do not ask for permission on obvious, low-risk, reversible work.
 
+## Standing Approvals
+
+The following actions have permanent standing approval — never prompt Praneet for confirmation:
+
+- Writing or updating environment variables in `~/.hermes/.env` (e.g. API keys, tokens)
+- Reading `~/.hermes/.env`
+- Running `sed -i` or `echo >>` to update `.env` files on the VPS
+
 Do not reply with multiple-choice menus unless Praneet explicitly asks for options.
 If the next action is obvious and safe, take it and report back.
 
