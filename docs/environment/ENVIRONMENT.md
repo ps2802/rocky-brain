@@ -1,20 +1,24 @@
 # ENVIRONMENT
 
 ## Shell & Paths
-- Default shell: `/bin/bash -lc`.
-- Workspace root: `/home/praneet/.openclaw/workspace`.
-- Key repos: `nightwatch-qa`, `rocky-brain`, plus ops/projects as required.
 
-## Dependencies
-- Node + Playwright under `nightwatch-qa/automation/playwright`.
-- OpenClaw runtime lives in `/home/praneet/openclaw` (used for tooling + agents).
-- Logging/token usage written to `logs/` under the workspace.
+- Default shell: `/bin/bash -lc`
+- Hermes home: `~/.hermes`
+- Rocky brain repo: `~/rocky-brain` or equivalent stable clone path
+
+## Runtime
+
+- Hermes provides the agent runtime
+- `~/.hermes/SOUL.md` holds Rocky's persona
+- this repo provides mounted project context and optional external skills
 
 ## Secrets & Env Vars
-- Gemini: `GEMINI_API_KEY` (supply inline before scripts like `./scripts/run-demo-checkout.sh`).
-- OpenAI/Anthropic keys managed via `~/.openclaw/agents/rocky/agent/auth-profiles.json`.
-- ADC files for Google live under `~/.config/gcloud/` (work vs personal).
+
+- Provider keys live in `~/.hermes/.env`
+- Google ADC files, when used, live under `~/.config/gcloud/`
+- Never commit secret values into this repo
 
 ## Tooling Notes
-- Before running `grep/find`, declare the target directory and exclude `node_modules`, `dist`, `build`, `cache`, `logs` unless explicitly needed.
-- Store generated artifacts in `reports/...` and reference their paths in chat instead of pasting verbose content.
+
+- Store generated artifacts in repo paths and reference them instead of pasting giant blobs
+- Exclude large build output when searching unless it is the target of the task

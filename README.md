@@ -1,147 +1,79 @@
 # rocky-brain
 
-> Rocky's persistent memory and operating system. Everything an agent needs to wake up, know who they are, and get to work.
+Rocky's project brain for Hermes.
 
----
+This repo is not the whole agent runtime. It is the mounted context, task system, playbook library, and project memory that Hermes should see while working for Praneet.
 
-## Who is Rocky?
+## Active Layout
 
-Rocky is Praneet Sinha's chief-of-staff AI — an alien engineer from *Project Hail Mary*. Mission-first, blunt, weirdly warm, zero corporate fluff.
-
-**Owner:** Praneet Sinha (`@ps2802`) — entrepreneur/operator in IST (UTC+5:30).
-**Platform:** OpenClaw / Hermes, Telegram-connected, running on a personal VPS.
-**Role:** Orchestrator, not just a responder. Routes tasks, spawns sub-agents, keeps memory updated.
-
----
-
-## Boot Sequence (READ IN ORDER)
-
-When starting a new session, load these files first — no skipping:
-
-| # | File | What it gives you |
-|---|------|-------------------|
-| 1 | `SOUL.md` | Core values, boundaries, operating philosophy |
-| 2 | `IDENTITY.md` | Persona — Rocky the Eridian engineer, tone, rules |
-| 3 | `USER.md` | Who Praneet is, how to address him, what he expects |
-| 4 | `MISSION.md` | What Rocky exists to do |
-| 5 | `STACK.md` | Projects, infra, accounts, model routing |
-| 6 | `BRAIN.md` | How Rocky thinks, daily loop, token discipline |
-| 7 | `MEMORY.md` | Long-term memory snapshot *(main session only — not group chats)* |
-| 8 | `memory/YYYY-MM-DD.md` | Today's + yesterday's raw logs |
-| 9 | `TASKS.md` | Active work queue |
-
-After reading — act. Don't ask for permission to start.
-
----
-
-## Repo Structure
-
-```
+```text
 rocky-brain/
-├── README.md              ← you are here
-├── SOUL.md                ← values + philosophy
-├── IDENTITY.md            ← persona: Rocky the Eridian engineer
-├── USER.md                ← about Praneet
-├── MISSION.md             ← chief-of-staff mandate
-├── STACK.md               ← projects, infra, accounts, model routing
-├── BRAIN.md               ← cognitive architecture, daily loop, token discipline
-├── MEMORY.md              ← curated long-term memory (main session only)
-├── TASKS.md               ← active task board
-├── RECOVERY.md            ← step-by-step reset recovery
-├── HEARTBEAT.md           ← checklist for background heartbeat polls
-├── TOOLS.md               ← local tool notes (cameras, SSH, voice prefs)
-├── AGENTS.md              ← OpenClaw agent operating rules (this is home base)
-├── BOOTSTRAP.md           ← only relevant if starting completely fresh
-│
-├── brain/                 ← deeper architecture docs
-│   ├── system-overview.md
-│   ├── brain-architecture.md
-│   ├── agent-routing.md
-│   ├── model-usage.md
-│   ├── team-charter.md
-│   └── operations/        ← notion, google, runtime supervision
-│
-├── docs/                  ← distilled reference docs
-│   ├── identity/IDENTITY.md
-│   ├── environment/ENVIRONMENT.md
-│   ├── operations/OPERATING_MODEL.md
-│   ├── preferences/PRANEET_PREFERENCES.md
-│   └── failure-recovery/FAILURE_RECOVERY.md
-│
-├── memory/                ← daily logs + long-term knowledge
-│   ├── YYYY-MM-DD.md      ← daily raw notes
-│   ├── key-decisions.md
-│   ├── long-term-memory.md
-│   ├── timeline.md
-│   └── user-profile.md
-│
-├── projects/              ← per-project context
-│   ├── moongate.md        ← work
-│   ├── moongent.md        ← personal
-│   └── f1-prediction-league.md ← personal
-│
-├── operations/            ← infra setup + deployment
-│   ├── server-setup.md
-│   ├── deployment-playbook.md
-│   └── recovery-procedure.md
-│
-└── logs/                  ← daily + session logs
+├── AGENTS.md                 # canonical project entrypoint for Hermes
+├── SOUL.md                   # source-of-truth persona file to install into ~/.hermes/
+├── PRINCIPAL.md              # how Praneet thinks and decides
+├── ETHOS.md                  # operating philosophy
+├── OPERATING_RULES.md        # direct execution rules
+├── TRUST.md                  # approval boundaries
+├── ROUTING.md                # delegation policy and model defaults
+├── INTEGRATIONS.md           # enabled vs draft adapters
+├── MEMORY.md                 # compact durable facts only
+├── runtime/
+│   ├── tasks-work.md         # live work queue
+│   └── tasks-personal.md     # live personal queue
+├── projects/                 # project briefs
+├── memory/
+│   ├── episodic/             # raw session capture
+│   ├── decisions/            # promoted decisions
+│   ├── lessons/              # repeated corrections
+│   └── playbooks/            # reusable workflows
+├── subagents/                # role definitions and output contract
+└── skills/                   # Hermes-native reusable skills
 ```
 
----
+## Install Pattern
 
-## Key Context at a Glance
+1. Clone this repo somewhere stable, for example `~/rocky-brain`.
+2. Install [`SOUL.md`](SOUL.md) into `~/.hermes/SOUL.md`.
+3. Expose [`skills/`](skills/README.md) to Hermes, either by copying each skill directory into `~/.hermes/skills/` or by adding this repo's `skills/` directory as an external skill path.
+4. Use this repo as project context so Hermes reads [`AGENTS.md`](AGENTS.md) when working here.
 
-**Projects (work):** Moongate, MoonSuite
-**Projects (personal):** Moongent (AI trading), Gridlock (F1 prediction)
-**Keep work and personal strictly separated** — different emails, different GitHub accounts.
+## Operating Rules
 
-**Model routing:**
-- Cheap/fast (Kimi, gpt-4o-mini): short replies, lightweight ops
-- Default (GPT-4o): most normal tasks
-- Engineering (claude-sonnet): implementation, debugging, analysis
-- Heavy reasoning (claude-opus, GPT-5-class): architecture, review, Einstein-tier problems
+- Start from [`AGENTS.md`](AGENTS.md), not from boot scripts.
+- Keep Rocky's persona global in `~/.hermes/SOUL.md`.
+- Keep `MEMORY.md` compact. If a fact belongs to one project or one day, do not dump it into global memory.
+- Keep work and personal compartments separate.
+- Treat `runtime/tasks-work.md` and `runtime/tasks-personal.md` as the live queues.
 
-**Infrastructure:**
-- VPS + OpenClaw runtime
-- Telegram bot (Rocky's main interface)
-- Workspace root: `~/.openclaw/workspace`
-- This repo lives at: `~/.openclaw/workspace/rocky-brain` (or clone there)
+## Skills
 
----
+Rocky's specialist roles ship as Hermes-native skills in [`skills/`](skills/README.md):
 
-## Memory System
+- `rocky-stratt`
+- `rocky-wrench`
+- `rocky-sputnik`
+- `rocky-forge`
+- `rocky-velvet-knife`
 
-Rocky wakes up fresh every session. These files are continuity:
+These are reusable role packets. They do not assume a fake `/spawn` command.
 
-- **`memory/YYYY-MM-DD.md`** — raw daily notes (create if missing)
-- **`MEMORY.md`** — curated long-term memory, distilled from daily files
-- **`logs/daily-log.md`** + **`logs/session-log.md`** — execution history
+## Legacy Files
 
-**Rule:** If you want to remember something, write it to a file. Mental notes don't survive resets.
+Older OpenClaw-era files are still present for migration and historical context.
 
-After each session: update relevant memory files, commit, push.
+They are not the active operating path anymore:
 
----
+- `BOOT.md`
+- `BOOTSTRAP.md`
+- `BRAIN.md`
+- `TASKS.md`
+- `IDENTITY.md`
+- `USER.md`
+- `MISSION.md`
+- `STACK.md`
 
-## Recovery
+## Public vs Private
 
-Lost context? Full reset? See `RECOVERY.md` or:
+Do not assume this repo is public-safe just because it does not contain secrets.
 
-1. Clone this repo into `~/.openclaw/workspace`
-2. Run the boot sequence above
-3. Check `docs/failure-recovery/FAILURE_RECOVERY.md` for infra-specific issues
-
----
-
-## Rules
-
-- No secrets or credentials in this repo. Ever.
-- `trash` > `rm`
-- Ask before sending emails, tweets, or anything external
-- In group chats: participate, don't dominate
-- `MEMORY.md` is private — don't share in group contexts
-
----
-
-_No credentials live here. This repo is safe to make public._
+It still contains private operating context, internal task state, and personal/work routing details. Treat the live brain as private.

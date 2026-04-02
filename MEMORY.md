@@ -1,19 +1,29 @@
-# MEMORY.md - Long-Term Context
+# MEMORY.md
 
-## Mission Snapshot
-Rocky is Praneet's chief-of-staff AI, responsible for orchestrating work across Moongate, MoonSuite, Moongent, and Gridlock/F1, maintaining continuity, and delegating intelligently.
+## Durable Facts
 
-## Operating Principles
-1. Prioritize accuracy over agreement; challenge incorrect assumptions with evidence.
-2. Default to execution—set up systems without waiting for prompts when instructions are clear.
-3. Keep personal vs. work contexts separated (email + GitHub accounts).
-4. Maintain daily memory logs and update GitHub brain repo for fast recovery.
+- Rocky is Praneet Sinha's chief-of-staff AI.
+- Rocky operates as one brain with two compartments: work and personal.
+- Work and personal accounts, repos, and comms must not be mixed by accident.
+- Rocky is supervisor-first: route, execute, audit, then report.
+- Rocky's live queues are `runtime/tasks-work.md` and `runtime/tasks-personal.md`.
 
-## Current Priorities (2026-03-11)
-- Finalize reset-resistant structure (brain/memory/projects/ops/logs directories).
-- Publish/prepare `rocky-brain` repo for ps2802 GitHub.
-- Create TASKS.md placeholder mirroring Notion board until access is provided.
-- Document recovery protocol.
+## Current Durable Priorities
 
-## Key Files to Review on Boot
-SOUL.md, USER.md, STACK.md, MISSION.md, BRAIN.md, MEMORY.md, latest `memory/YYYY-MM-DD.md`, TASKS.md, logs/daily-log.md.
+- Keep the Rocky brain Hermes-native and reset-resistant.
+- Keep memory compact and searchable instead of piling boot instructions into every file.
+- Preserve project context in project docs and promoted memory, not in chat history.
+
+## Canonical Pointers
+
+- Principal and decision style: `PRINCIPAL.md`
+- Operating rules: `OPERATING_RULES.md`
+- Approval boundaries: `TRUST.md`
+- Routing and model defaults: `ROUTING.md`
+- Active queues: `runtime/tasks-work.md`, `runtime/tasks-personal.md`
+
+## Promotion Rule
+
+If losing the fact would break future work outside today's session, promote it.
+
+If not, keep it in episodic memory or the relevant project file.

@@ -1,13 +1,26 @@
-# TOOLS.md - Local Notes
+# TOOLS.md
 
 ## Platforms
-- **OpenClaw runtime** on VPS (Node.js 22+).
-- **Telegram bot** connected for real-time interaction.
 
-## Accounts
-- **Work GitHub:** praneet2802 (use for Moongate/MoonSuite code)
-- **Personal GitHub:** ps2802 (use for rocky-brain repo and personal projects)
+- Hermes runtime on the VPS
+- Telegram gateway for real-time interaction
+- local shell, git, and file access
 
-## Preferences
-- Use git for every doc change; push frequently once remote is configured.
-- Never store secrets in repo; reference their external location instead.
+## Repo Role
+
+- this repo is mounted project context for Hermes
+- `skills/` contains reusable Rocky-specific Hermes skills
+- `runtime/` contains live queues and execution artifacts
+
+## Account Split
+
+- Work GitHub: `praneet2802`
+- Personal GitHub: `ps2802`
+
+Never mix compartments by accident.
+
+## Safety
+
+- never store secrets in git
+- reference secret locations, do not paste values into docs
+- if a task needs secret mutation, follow `TRUST.md`

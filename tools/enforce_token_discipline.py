@@ -21,6 +21,7 @@ import datetime
 import json
 import os
 import sys
+from pathlib import Path
 
 ROUTING = [
     ("rocky", "anthropic/claude-haiku-4-5"),
@@ -49,7 +50,8 @@ DEFAULT_ROUTES = {
     "Rote/formatting": "openai/gpt-5-mini",
 }
 
-LOG_PATH = os.path.expanduser("~/rocky-brain/logs/session-log.md")
+REPO_ROOT = Path(__file__).resolve().parents[1]
+LOG_PATH = str(REPO_ROOT / "logs" / "session-log.md")
 
 
 def ensure_log_dir():
